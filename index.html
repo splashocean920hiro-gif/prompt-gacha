@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-<title>AI診断プロンプトどうぶつガチャ</title>
+<title>プレミアム特典 AIプロンプトガチャ</title>
 <style>
   :root{
     --ink:#2b2440;
@@ -175,6 +175,25 @@
     border:3px solid #fff; border-top:none;
     box-shadow:0 14px 22px rgba(255,106,160,.35), inset 0 3px 5px rgba(255,255,255,.7), inset 0 -8px 10px rgba(214,50,110,.25);
   }
+
+  .prompt-list{
+    background:#fff; border:1px solid rgba(43,36,64,.08); border-radius:18px;
+    padding:16px 18px 14px; margin:24px 0 8px;
+    box-shadow:0 4px 14px rgba(43,36,64,.06);
+  }
+  .prompt-list-title{
+    font-size:12.5px; font-weight:800; color:var(--sub); letter-spacing:.03em;
+    margin-bottom:10px;
+  }
+  .prompt-list-ul{ list-style:none; margin:0; padding:0; display:flex; flex-direction:column; gap:9px; }
+  .prompt-list-ul li{
+    display:flex; align-items:center; gap:9px;
+    font-size:13.5px; font-weight:700; color:var(--ink);
+  }
+  .prompt-list-ul li .dot{ width:8px; height:8px; border-radius:50%; flex-shrink:0; }
+  .prompt-list-ul li .dot.ssr{ background:var(--gold); }
+  .prompt-list-ul li .dot.rare{ background:var(--teal); }
+  .prompt-list-ul li .dot.normal{ background:var(--blue); }
 
   .capsule{
     position:absolute; left:50%; bottom:-6px;
@@ -436,7 +455,7 @@
 <div class="app">
   <header>
     <div class="badge">ANIMAL PROMPT GACHA</div>
-    <h1>AI診断プロンプトどうぶつガチャ</h1>
+    <h1>プレミアム特典<br>AIプロンプトガチャ</h1>
     <p>レバーを引いて便利なプロンプトをゲットしよう</p>
   </header>
 
@@ -479,6 +498,11 @@
       </div>
       <div class="machine-base"></div>
     </div>
+  </div>
+
+  <div class="prompt-list">
+    <div class="prompt-list-title">ゲットできるプロンプト</div>
+    <ul class="prompt-list-ul" id="promptListUl"></ul>
   </div>
 </div>
 
@@ -529,9 +553,9 @@
 
   const PROMPTS = [
     {
-      id:1, rarity:'SSR', image:IMG_OWL, title:'手相占い診断プロンプト',
-      catch:'その手のひらに、運命が刻まれている。',
-      prompt:`あなたはこれまで10000人以上を鑑定してきたベテラン手相占い師です。これから私が伝える手のひらの特徴をもとに、本格的な手相占いを行ってください。
+      id:1, rarity:'SSR', image:IMG_OWL, title:'あなたは成功する？手相占いプロンプト',
+      catch:'その手のひらに、成功の兆しが刻まれている。',
+      prompt:`あなたはこれまで10000人以上を鑑定してきたベテラン手相占い師です。これから私が伝える手のひらの特徴をもとに、「私は成功するのか」を軸に本格的な手相占いを行ってください。
 
 【私の手相の特徴】
 ・生命線:(例:長さ、濃さ、途中で枝分かれしているか)
@@ -541,13 +565,13 @@
 ※わからない部分は「不明」と書いてもOKです。手のひらの特徴を言葉で説明してもらえれば、そこから推測して鑑定してください。
 
 【鑑定してほしい内容】
-1. 全体的な運勢の傾向
-2. 恋愛運・結婚運
-3. 仕事運・金運
-4. 健康面で気をつけたいこと
+1. 総合的な「成功運」の傾向
+2. 仕事・事業で成功しやすいタイミング
+3. お金に恵まれる時期・金運の傾向
+4. 成功への障害になりやすい注意点
 5. 今のあなたに向いている行動アドバイスを3つ
 
-占い師らしく、温かみのある語り口で、断定しすぎず、でも背中を押してくれるようなトーンでお願いします。最後に「今日から意識すると運気が上がる小さな習慣」を1つ提案してください。`
+占い師らしく、温かみのある語り口で、断定しすぎず、でも背中を押してくれるようなトーンでお願いします。最後に「今日から意識すると成功に近づく小さな習慣」を1つ提案してください。`
     },
     {
       id:2, rarity:'SSR', image:IMG_HAMSTER, title:'パーソナルカラー診断プロンプト',
@@ -571,65 +595,65 @@
 専門用語は使ってもいいですが、初心者にもわかるように噛み砕いて説明してください。`
     },
     {
-      id:3, rarity:'Rare', image:IMG_CAT, title:'恋愛傾向診断プロンプト',
-      catch:'恋の癖は、変えられる癖でもある。',
-      prompt:`あなたは恋愛心理カウンセラーです。以下の質問に対する私の回答から、恋愛における行動パターンと改善点を診断してください。
-
-【質問】
-1. 好きな人ができたときの行動(自分からアプローチする/待つ)
-2. LINEの返信速度、既読スルーされたときの気持ち
-3. 過去の恋愛で繰り返してしまうパターン
-4. 束縛されたい/されたくないタイプか
-5. 恋人に一番求めるもの(安心/刺激/尊敬など)
-
-【診断内容】
-1. 恋愛タイプ診断(例:安全基地型/追いかけたい型/自由型など、オリジナルのタイプ名で)
-2. あなたが恋愛でつまずきやすいポイント
-3. 相性が良い相手のタイプ
-4. 今のあなたに足りない恋愛スキル
-5. 明日から使える「モテる小さな習慣」を3つ
-
-読んだ人が「当たってる…!」と思うくらい具体的に、かつ優しいトーンで書いてください。`
-    },
-    {
-      id:4, rarity:'Normal', image:IMG_FOX, title:'今日の運勢占いプロンプト',
-      catch:'今日という日は、今日しか占えない。',
-      prompt:`あなたはプロの占い師です。今日の私の運勢を占ってください。
+      id:3, rarity:'Rare', image:IMG_CAT, title:'初心者おすすめアフィリエイト案件5選',
+      catch:'稼ぐ近道は、案件選びで決まる。',
+      prompt:`あなたはアフィリエイトマーケティングの専門コンサルタントです。以下の情報をもとに、初心者にもおすすめできるアフィリエイト案件を5つ提案してください。
 
 【教えてほしい情報】
-・生年月日
-・今の気分(一言)
-・今日やる予定のこと(あれば)
+・興味のあるジャンル(美容/ガジェット/金融/ダイエット/子育てなど)
+・発信している、またはしたい媒体(X/Instagram/ブログ/YouTube/LINEなど)
+・フォロワー数やアクセス数の目安(あれば)
+・初期費用にかけられる予算感
 
-【占ってほしい内容】
-1. 今日の総合運(5段階評価)
-2. 恋愛運・仕事運・金運それぞれのワンポイントアドバイス
-3. 今日のラッキーカラー、ラッキーアイテム
-4. 今日気をつけたほうがいいこと
-5. 今日1日を気分よく過ごすための一言メッセージ
+【提案してほしい内容】
+1. 初心者でも成果が出やすいアフィリエイト案件を5つ(ジャンル・案件の特徴・報酬相場の目安)
+2. それぞれの案件が初心者向きな理由
+3. 案件ごとに向いている発信方法・訴求の切り口
+4. ASP(アフィリエイトサービスプロバイダ)の探し方の目安
+5. 最初の1件で成果を出すためのポイント
 
-明るく前向きな語り口で、読んだ人が「今日も頑張ろう」と思えるようにお願いします。`
+具体的な案件イメージや成果の出しやすさの根拠も交えて、実践的にアドバイスしてください。`
     },
     {
-      id:5, rarity:'Normal', image:IMG_REDPANDA, title:'才能診断プロンプト',
-      catch:'気づかれていない才能ほど、輝きたがっている。',
-      prompt:`あなたはストレングスコーチ(強み診断の専門家)です。以下の質問への回答から、私が気づいていない「隠れた才能」を診断してください。
+      id:4, rarity:'Normal', image:IMG_FOX, title:'顔出し無し配信ができるプロンプト',
+      catch:'顔を出さなくても、声と工夫で届く。',
+      prompt:`あなたは顔出しなしで活動する配信者を数多くサポートしてきた配信プロデューサーです。以下の質問への回答をもとに、私に合った「顔出し無し配信」のスタイルを提案してください。
 
 【質問】
-1. 子供の頃、時間を忘れて熱中したこと
-2. 人からよく褒められること、頼られること
-3. 逆に、苦手・面倒だと感じること
-4. お金をもらわなくてもやりたいこと
-5. 「なぜかうまくいく」と感じる場面
+1. 配信したいジャンル(雑談/ゲーム実況/勉強・作業/占い診断など)
+2. 声を出せる環境かどうか(声あり/文字のみ希望)
+3. 顔出しに抵抗がある理由(容姿/身バレ/緊張など)
+4. 配信で使いたい、または使える機材(スマホのみ/PC/マイクの有無)
+5. 週にどのくらいの頻度で配信したいか
 
-【診断内容】
-1. あなたの隠れた才能トップ3(才能に名前をつけて)
-2. その才能が活きる場面・仕事のヒント
-3. 才能を活かせていないときのサイン
-4. 才能を伸ばすために明日からできる小さな行動
-5. あなたの才能を一言で表すキャッチコピー
+【提案してほしい内容】
+1. 私に向いている顔出し無し配信のスタイル(例:Vtuber風/シルエット/音声のみ/文字配信など)
+2. そのスタイルに必要な準備・機材の目安
+3. 身バレを防ぐための注意点
+4. 顔出し無しでも視聴者に信頼してもらうための工夫
+5. 最初の1本目で話すと良いテーマ案を3つ
 
-読んだ人が自己肯定感が上がるような、背中を押すトーンでお願いします。`
+初心者でも今日から始められるように、専門用語は避けてやさしく具体的に教えてください。`
+    },
+    {
+      id:5, rarity:'Normal', image:IMG_REDPANDA, title:'AIが10倍賢くなるプロンプト',
+      catch:'同じAIでも、聞き方ひとつで別人になる。',
+      prompt:`あなたはプロンプトエンジニアリングの専門家です。以下の質問への回答をもとに、私がAIをもっと使いこなすための「プロンプト改善アドバイス」をしてください。
+
+【質問】
+1. 普段AI(ChatGPTやGeminiなど)をどんな用途で使っているか
+2. AIの回答に対してよく感じる不満(浅い/長すぎる/的外れなど)
+3. 今使っているプロンプトの書き方の例を1つ教えてください
+4. AIにもっとやってほしいこと
+
+【アドバイスしてほしい内容】
+1. 今のプロンプトの書き方で改善できるポイント
+2. AIの回答の質が劇的に上がるプロンプトの型(役割設定・条件指定・出力形式など)
+3. 私の用途に合わせた具体的な改善プロンプト例
+4. AIをプロのコンサルタントのように使うためのコツ
+5. 今日から使える「一段階レベルアップするプロンプトのコツ」を3つ
+
+専門用語を使う場合は必ずかみ砕いて説明し、すぐ真似できる具体例を中心に教えてください。`
     }
   ];
 
@@ -657,6 +681,16 @@
   let busy = false;
   const LEVER_RANGE = 46;   // px the handle can travel down the track
   const THRESHOLD = 30;     // px pulled to trigger the gacha
+
+  const promptListUl = $('promptListUl');
+  PROMPTS.forEach(item => {
+    const li = document.createElement('li');
+    const dot = document.createElement('span');
+    dot.className = 'dot ' + RARITY_INFO[item.rarity].class;
+    li.appendChild(dot);
+    li.appendChild(document.createTextNode(item.title));
+    promptListUl.appendChild(li);
+  });
 
   function pickRarity(){
     const r = Math.random();
