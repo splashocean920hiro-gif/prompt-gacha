@@ -34,6 +34,7 @@
       linear-gradient(180deg, var(--bg1) 0%, var(--bg2) 100%);
     color:var(--ink);
     font-family:"Hiragino Sans","Yu Gothic",-apple-system,BlinkMacSystemFont,sans-serif;
+    word-break:keep-all; overflow-wrap:break-word; line-break:strict;
     overflow-x:hidden;
     min-height:100vh;
     touch-action:pan-y;
@@ -636,7 +637,7 @@
 初心者でも今日から始められるように、専門用語は避けてやさしく具体的に教えてください。`
     },
     {
-      id:5, rarity:'Normal', image:IMG_REDPANDA, title:'AIが10倍賢くなるプロンプト',
+      id:5, rarity:'SSR', image:IMG_REDPANDA, title:'AIが10倍賢くなるプロンプト',
       catch:'同じAIでも、聞き方ひとつで別人になる。',
       prompt:`あなたはプロンプトエンジニアリングの専門家です。以下の質問への回答をもとに、私がAIをもっと使いこなすための「プロンプト改善アドバイス」をしてください。
 
