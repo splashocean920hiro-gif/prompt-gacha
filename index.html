@@ -77,9 +77,8 @@
   .stage{
     position:relative;
     flex:1;
-    display:flex; flex-direction:column; align-items:center; justify-content:center;
-    min-height:400px;
-    margin-top:4px;
+    display:flex; flex-direction:column; align-items:center; justify-content:flex-start;
+    margin-top:14px;
   }
 
   .hint{
@@ -96,56 +95,61 @@
     position:relative; z-index:1;
     width:216px; height:246px;
     border-radius:108px 108px 26px 26px;
-    background:linear-gradient(160deg, #fff0f6 0%, #ffe2ee 55%, #ffd3e4 100%);
+    background:
+      radial-gradient(ellipse 60px 150px at 24% 10%, rgba(255,255,255,.6), transparent 72%),
+      linear-gradient(155deg, #fff8fb 0%, #ffd0e4 30%, #ff96c1 68%, #ff6aa0 100%);
     border:3px solid #fff;
-    box-shadow:0 14px 30px rgba(255,143,184,.28), inset 0 -12px 18px rgba(255,143,184,.15);
+    box-shadow:
+      0 20px 34px rgba(255,106,160,.4),
+      inset 0 20px 22px rgba(255,255,255,.65),
+      inset 0 -26px 30px rgba(214,50,110,.35);
   }
 
   .machine-window{
     position:absolute; top:14px; left:50%; transform:translateX(-50%);
     width:148px; height:148px; border-radius:50%;
-    background:radial-gradient(circle at 35% 28%, rgba(255,255,255,.92), rgba(207,232,255,.55) 72%);
+    background:radial-gradient(circle at 32% 26%, rgba(255,255,255,.95), rgba(180,215,250,.6) 60%, rgba(140,180,225,.55) 100%);
     border:5px solid rgba(255,255,255,.95);
-    box-shadow:inset 0 8px 14px rgba(127,168,217,.25), 0 4px 10px rgba(127,168,217,.2);
+    box-shadow:inset 0 10px 18px rgba(90,130,180,.35), inset 0 -8px 14px rgba(90,130,180,.2), 0 4px 10px rgba(127,168,217,.2);
     overflow:hidden;
   }
   .window-glare{
     position:absolute; top:10px; left:18px; width:42px; height:64px; border-radius:50%;
-    background:rgba(255,255,255,.55); transform:rotate(-18deg); filter:blur(2px);
+    background:rgba(255,255,255,.65); transform:rotate(-18deg); filter:blur(2px);
     pointer-events:none;
   }
-  .pile-ball{ position:absolute; border-radius:50%; box-shadow:0 2px 3px rgba(43,36,64,.15); }
+  .pile-ball{ position:absolute; border-radius:50%; box-shadow:0 2px 3px rgba(43,36,64,.18), inset -3px -3px 5px rgba(43,36,64,.12), inset 2px 2px 3px rgba(255,255,255,.8); }
 
   .machine-panel{
     position:absolute; top:170px; left:50%; transform:translateX(-50%);
     width:172px; height:32px; border-radius:12px;
-    background:linear-gradient(160deg, #fff, #ffe9f1);
+    background:linear-gradient(160deg, #fff 0%, #ffe0ec 55%, #ffc8dc 100%);
     border:2px solid #fff;
-    box-shadow:inset 0 2px 4px rgba(43,36,64,.06);
+    box-shadow:inset 0 3px 5px rgba(255,255,255,.9), inset 0 -4px 6px rgba(214,50,110,.15), 0 2px 4px rgba(255,143,184,.2);
     display:flex; align-items:center; justify-content:center; gap:10px;
   }
-  .coin-slot{ width:30px; height:9px; border-radius:5px; background:rgba(43,36,64,.25); box-shadow:inset 0 2px 3px rgba(0,0,0,.3); }
-  .panel-light{ width:9px; height:9px; border-radius:50%; background:var(--gold); box-shadow:0 0 6px var(--gold); }
+  .coin-slot{ width:30px; height:9px; border-radius:5px; background:rgba(43,36,64,.28); box-shadow:inset 0 2px 3px rgba(0,0,0,.35), 0 1px 0 rgba(255,255,255,.6); }
+  .panel-light{ width:9px; height:9px; border-radius:50%; background:radial-gradient(circle at 35% 30%, #fff9d6, var(--gold) 70%); box-shadow:0 0 7px var(--gold); }
 
   .dispense-flap{
     position:absolute; bottom:16px; left:50%; transform:translateX(-50%);
     width:74px; height:20px; border-radius:6px 6px 12px 12px;
-    background:rgba(43,36,64,.18);
-    box-shadow:inset 0 3px 5px rgba(0,0,0,.3);
+    background:linear-gradient(180deg, rgba(43,36,64,.32), rgba(43,36,64,.18));
+    box-shadow:inset 0 4px 6px rgba(0,0,0,.4), 0 1px 0 rgba(255,255,255,.5);
     z-index:4;
   }
 
   .lever-track{
     position:absolute; right:-18px; top:128px;
     width:26px; height:82px; border-radius:14px;
-    background:linear-gradient(180deg, #e8e2f7, #d3c9ee);
-    box-shadow:inset 0 3px 6px rgba(43,36,64,.25);
+    background:linear-gradient(100deg, #d3c9ee 0%, #f0ebfc 30%, #c3b6e8 60%, #b7a4e0 100%);
+    box-shadow:inset 0 3px 6px rgba(43,36,64,.3), inset -2px 0 4px rgba(255,255,255,.5);
     touch-action:none; user-select:none;
     display:flex; justify-content:center;
     z-index:3;
   }
   .lever-rail{
-    width:4px; height:100%; border-radius:2px; background:rgba(43,36,64,.18);
+    width:4px; height:100%; border-radius:2px; background:rgba(43,36,64,.2);
   }
   .lever-arrow{
     position:absolute; top:-20px; left:50%; transform:translateX(-50%);
@@ -155,8 +159,8 @@
   .lever-handle{
     position:absolute; top:2px; left:50%; transform:translate(-50%,0);
     width:26px; height:26px; border-radius:50%;
-    background:radial-gradient(circle at 35% 30%, #fff, var(--gold) 75%);
-    box-shadow:0 4px 10px rgba(224,165,42,.5), 0 0 0 3px #fff;
+    background:radial-gradient(circle at 32% 28%, #fffceb, var(--gold) 55%, var(--gold-deep) 100%);
+    box-shadow:0 5px 12px rgba(224,165,42,.55), inset -2px -2px 4px rgba(180,120,10,.4), 0 0 0 3px #fff;
     cursor:grab;
     transition:transform .3s cubic-bezier(.34,1.56,.64,1);
   }
@@ -164,11 +168,12 @@
   .lever-handle.springing{ transition:transform .4s cubic-bezier(.34,1.56,.64,1); }
 
   .machine-base{
+    position:relative;
     width:250px; height:30px; margin-top:-6px;
     border-radius:14px;
-    background:linear-gradient(160deg, #ffe2ee, #ffd3e4);
+    background:linear-gradient(160deg, #fff0f6 0%, #ffc8dc 50%, #ff9dc4 100%);
     border:3px solid #fff; border-top:none;
-    box-shadow:0 10px 20px rgba(255,143,184,.25);
+    box-shadow:0 14px 22px rgba(255,106,160,.35), inset 0 3px 5px rgba(255,255,255,.7), inset 0 -8px 10px rgba(214,50,110,.25);
   }
 
   .capsule{
