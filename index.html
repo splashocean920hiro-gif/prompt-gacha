@@ -198,7 +198,7 @@
 
   .capsule{
     position:absolute; left:50%; bottom:-6px;
-    width:110px; height:138px;
+    width:124px; height:124px;
     transform:translate(-50%,0) scale(0);
     transform-origin:center bottom;
     opacity:0;
@@ -252,29 +252,29 @@
     100%{ opacity:0; transform:scale(2.1); }
   }
   .capsule-top{
-    position:absolute; top:0; left:8px; right:8px; height:72px;
-    border-radius:55px 55px 12px 12px;
+    position:absolute; top:0; left:0; right:0; height:62px;
+    border-radius:62px 62px 0 0;
     background:linear-gradient(160deg, #fff 0%, #ffd3e4 45%, var(--pink) 100%);
     box-shadow:0 6px 18px rgba(255,143,184,.4), inset 0 -6px 10px rgba(0,0,0,.08);
   }
   .capsule-bottom{
-    position:absolute; bottom:0; left:0; right:0; height:82px;
-    border-radius:12px 12px 55px 55px;
+    position:absolute; bottom:0; left:0; right:0; height:62px;
+    border-radius:0 0 62px 62px;
     background:linear-gradient(160deg, #d4fbec 0%, var(--mint) 100%);
     box-shadow:0 6px 18px rgba(87,217,168,.35), inset 0 -6px 10px rgba(0,0,0,.1);
   }
   .capsule-seam{
-    position:absolute; left:0; right:0; top:50%; height:7px; transform:translateY(-50%);
-    background:var(--gold); border-radius:4px; box-shadow:0 1px 4px rgba(0,0,0,.15);
+    position:absolute; left:0; right:0; top:50%; height:8px; transform:translateY(-50%);
+    background:var(--gold); box-shadow:0 1px 4px rgba(0,0,0,.15);
   }
   .capsule-glow{
-    position:absolute; inset:-26px; border-radius:50%;
+    position:absolute; inset:-24px; border-radius:50%;
     background:radial-gradient(circle, rgba(255,255,255,0.5), transparent 70%);
     pointer-events:none;
   }
   .capsule-mark{
     position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-    font-size:28px; filter:drop-shadow(0 2px 3px rgba(0,0,0,.15));
+    font-size:30px; filter:drop-shadow(0 2px 3px rgba(0,0,0,.15));
   }
 
   /* ---- Flash / burst overlay ---- */
@@ -554,7 +554,7 @@
 
   const PROMPTS = [
     {
-      id:1, rarity:'SSR', image:IMG_OWL, title:'あなたは成功する？手相占いプロンプト',
+      id:1, rarity:'Normal', image:IMG_OWL, title:'あなたは成功する？手相占いプロンプト',
       catch:'その手のひらに、成功の兆しが刻まれている。',
       prompt:`あなたはこれまで10000人以上を鑑定してきたベテラン手相占い師です。これから私が伝える手のひらの特徴をもとに、「私は成功するのか」を軸に本格的な手相占いを行ってください。
 
@@ -575,7 +575,7 @@
 占い師らしく、温かみのある語り口で、断定しすぎず、でも背中を押してくれるようなトーンでお願いします。最後に「今日から意識すると成功に近づく小さな習慣」を1つ提案してください。`
     },
     {
-      id:2, rarity:'SSR', image:IMG_HAMSTER, title:'パーソナルカラー診断プロンプト',
+      id:2, rarity:'Normal', image:IMG_HAMSTER, title:'パーソナルカラー診断プロンプト',
       catch:'似合う色は、生まれ持った武器になる。',
       prompt:`あなたはプロのパーソナルカラーアナリストです。以下の情報をもとに、私に似合うパーソナルカラー(イエベ春/イエベ秋/ブルベ夏/ブルベ冬)を診断してください。
 
@@ -616,7 +616,7 @@
 具体的な案件イメージや成果の出しやすさの根拠も交えて、実践的にアドバイスしてください。`
     },
     {
-      id:4, rarity:'Normal', image:IMG_FOX, title:'顔出し無し配信ができるプロンプト',
+      id:4, rarity:'Rare', image:IMG_FOX, title:'顔出し無し配信ができるプロンプト',
       catch:'顔を出さなくても、声と工夫で届く。',
       prompt:`あなたは顔出しなしで活動する配信者を数多くサポートしてきた配信プロデューサーです。以下の質問への回答をもとに、私に合った「顔出し無し配信」のスタイルを提案してください。
 
